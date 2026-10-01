@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arul's Tech Feed</title>
+<meta name="description" content="Daily tech news on AI, cloud, gadgets, startups, SEO, AEO and GEO, e-commerce and Shopify, linked to the original publishers.">
+<meta name="referrer" content="no-referrer">
+<meta property="og:title" content="Arul's Tech Feed">
+<meta property="og:description" content="Daily tech, SEO and e-commerce news in one feed.">
+<meta name="theme-color" content="#141824">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233d5afe'/%3E%3Cpath d='M8 10h16M8 16h16M8 22h10' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: MSN-style three-column feed (top stories list | hero carousel | stacked cards), then per-category grids */
+:root{
+  --bg:#eef0f5; --surface:#ffffff; --surface-2:#f5f6fa; --line:#dfe2ea;
+  --fg:#161a24; --muted:#5d6475; --accent:#3d5afe;
+  --ai:#7c4dff; --cloud:#0091ea; --gadgets:#ef6c00; --startups:#00a36c; --seo:#d81b60; --aeo:#00838f; --ecommerce:#c62828; --shopify:#5e8e3e;
+  --hero-ink:#ffffff;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+  --r:18px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141824; --surface:#1d2231; --surface-2:#252b3c; --line:#2f3649;
+  --fg:#eef0f6; --muted:#9aa2b6; --accent:#8c9eff;
+  --ai:#a48bff; --cloud:#4fc3f7; --gadgets:#ffa040; --startups:#3fd69b; --seo:#ff6fa5; --aeo:#4dd0e1; --ecommerce:#ff7a6b; --shopify:#95bf47;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#141824; --surface:#1d2231; --surface-2:#252b3c; --line:#2f3649;
+  --fg:#eef0f6; --muted:#9aa2b6; --accent:#8c9eff;
+  --ai:#a48bff; --cloud:#4fc3f7; --gadgets:#ffa040; --startups:#3fd69b; --seo:#ff6fa5; --aeo:#4dd0e1; --ecommerce:#ff7a6b; --shopify:#95bf47;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.45}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:clamp(16px,3vw,32px);padding-block:28px 56px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.greet small{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.greet h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,34px);margin:0;line-height:1.1;text-wrap:balance}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:500 13.5px var(--body);padding:8px 14px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--muted)}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:-8px 0 18px;color:var(--muted);font-size:13px}
+.meta-row select{font:500 13px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+.live{display:inline-flex;align-items:center;gap:6px}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--startups)}
+
+/* main grid */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.15fr) minmax(0,1fr);gap:20px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.panel h2{font-family:var(--display);font-size:19px;margin:0 0 14px}
+.toplist{display:flex;flex-direction:column}
+.toplist a{display:block;padding:12px 0;border-top:1px solid var(--line)}
+.toplist a:first-child{border-top:0;padding-top:0}
+.toplist a:hover .t{text-decoration:underline;text-underline-offset:3px}
+.toplist .t{font-weight:600;font-size:15px;line-height:1.35;display:block;margin-bottom:6px}
+.src{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);min-width:0}
+.src b{font-weight:500;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mono{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font:600 10px var(--mono);color:#fff;background:var(--c);flex:none}
+
+/* cover art (generated per story, no external images) */
+.cover{position:relative;overflow:hidden;background:var(--c);isolation:isolate}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(circle at var(--x,75%) var(--y,30%), rgba(255,255,255,.35), transparent 42%),
+    radial-gradient(circle at 10% 110%, rgba(0,0,0,.45), transparent 55%),
+    repeating-linear-gradient(var(--a,135deg), rgba(255,255,255,.07) 0 2px, transparent 2px 22px);}
+.cover .glyph{position:absolute;right:-6%;top:-12%;font:700 clamp(120px,18vw,240px)/1 var(--display);color:rgba(255,255,255,.13);letter-spacing:-.04em;pointer-events:none;user-select:none}
+
+/* hero */
+.hero{border-radius:var(--r);min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;color:var(--hero-ink)}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,20,.78),rgba(10,12,20,.1) 65%);z-index:-1}
+.hero .kick{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;margin-bottom:10px;color:rgba(255,255,255,.9)}
+.hero .kick .mono{background:rgba(255,255,255,.22)}
+.hero h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,31px);line-height:1.15;margin:0 0 10px;max-width:30ch;text-wrap:balance}
+.hero p{margin:0;max-width:62ch;color:rgba(255,255,255,.85);font-size:14.5px}
+.hero-link{position:absolute;inset:0;z-index:1}
+.hero-ctl{position:absolute;right:22px;bottom:22px;display:flex;gap:8px;z-index:2}
+.hero-ctl button{width:40px;height:40px;border-radius:12px;border:0;background:rgba(255,255,255,.88);color:#161a24;font-size:18px;cursor:pointer}
+.dots{display:flex;gap:6px;margin-top:16px}
+.dots span{height:4px;width:18px;border-radius:2px;background:rgba(255,255,255,.35)}
+.dots span.on{background:#fff;width:30px}
+
+.stack{display:flex;flex-direction:column;gap:20px}
+.card{border-radius:var(--r);overflow:hidden;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .18s, box-shadow .18s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px -14px rgba(0,0,0,.45)}
+.card .cover{height:130px}
+.card .cover .glyph{font-size:150px}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h4{margin:0;font-size:16px;font-weight:600;line-height:1.32;text-wrap:balance}
+.card p{margin:0;color:var(--muted);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .src{margin-top:auto}
+.tag{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+
+/* sections */
+.section{margin-top:36px}
+.section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.section-h h2{font-family:var(--display);font-size:22px;margin:0;display:flex;align-items:center;gap:10px}
+.section-h h2::before{content:"";width:12px;height:12px;border-radius:4px;background:var(--c)}
+.section-h span{color:var(--muted);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+
+.empty{padding:48px 24px;text-align:center;color:var(--muted)}
+.empty h2{font-family:var(--display);color:var(--fg);margin:0 0 8px}
+.ext{font-size:12px;opacity:.7}
+.foot{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
+
+@media (max-width:1040px){
+  .grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero-col{grid-column:1 / -1;order:-1}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .hero{min-height:340px;padding:20px}
+  .hero-ctl{right:14px;bottom:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.cover img.thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero img.thumb{z-index:-2}
+.cover.has-img .glyph{display:none}
+.card .cover{height:150px}
+.toplist a.withimg{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:12px;align-items:start}
+.toplist .mini{width:72px;height:56px;border-radius:10px;object-fit:cover;background:var(--surface-2)}
+.toplist a.withimg:first-child{grid-template-columns:minmax(0,1fr)}
+.toplist a.withimg:first-child .mini{grid-row:1;width:100%;height:150px;border-radius:12px;order:-1}
+.refresh{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px;font:500 13px var(--body);cursor:pointer}
+.skeleton{background:linear-gradient(90deg,var(--surface) 0%,var(--surface-2) 50%,var(--surface) 100%);background-size:200% 100%;animation:sh 1.4s infinite;border-radius:var(--r);min-height:420px}
+@keyframes sh{to{background-position:-200% 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="greet">
+      <small id="today">Tech briefing</small>
+      <h1 id="hello">Good morning, Arul</h1>
+    </div>
+    <nav class="chips" id="chips" aria-label="Categories"></nav>
+  </header>
+  <div class="meta-row">
+    <span class="live"><i></i><span id="updated">Loading the latest stories…</span></span>
+    <button class="refresh" id="refresh" type="button">Refresh</button>
+  </div>
+  <main id="feed"><div class="skeleton" aria-hidden="true"></div></main>
+  <p class="foot">Every story links to its original publisher. Feed refreshes every 30 minutes.</p>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>
